@@ -1,0 +1,35 @@
+# Created by Codex Marinus 2026.01.16
+
+### Common ###
+.DS_Store
+application-*.properties
+
+
+### Eclipse ###
+.metadata/
+.settings/
+bin/
+tmp/
+
+.factorypath
+.buildpath
+
+
+### Intellij ###
+.idea/
+.smarttomcat/
+out/
+
+*.iml
+
+
+### Maven ###
+target/
+
+
+### Gradle ###
+.gradle/
+build/
+
+
+# End
