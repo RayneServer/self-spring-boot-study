@@ -1,23 +1,14 @@
 package dev.coma.self.spring.dto;
 
 import dev.coma.self.spring.entity.Article;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 
+@AllArgsConstructor
+@ToString
 public class ArticleDto {
   private String title;
   private String content;
-
-  public ArticleDto(String title, String content) {
-    this.title = title;
-    this.content = content;
-  }
-
-  @Override
-  public String toString() {
-    return "ArticleDto{" +
-            "title='" + title + '\'' +
-            ", content='" + content + '\'' +
-            '}';
-  }
 
   public Article toEntity() {
     return new Article(null, title, content);
