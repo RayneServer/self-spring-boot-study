@@ -1,6 +1,6 @@
-package dev.coma.self.spring.dto;
+package service.rayne.self.spring.dto;
 
-import dev.coma.self.spring.entity.Article;
+import service.rayne.self.spring.entity.Article;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 

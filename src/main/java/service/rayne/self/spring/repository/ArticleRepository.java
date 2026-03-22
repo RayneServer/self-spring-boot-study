@@ -1,6 +1,6 @@
-package dev.coma.self.spring.repository;
+package service.rayne.self.spring.repository;
 
-import dev.coma.self.spring.entity.Article;
+import service.rayne.self.spring.entity.Article;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;

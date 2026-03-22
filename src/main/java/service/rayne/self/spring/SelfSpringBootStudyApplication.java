@@ -1,4 +1,4 @@
-package dev.coma.self.spring;
+package service.rayne.self.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

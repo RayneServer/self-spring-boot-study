@@ -1,4 +1,4 @@
-package dev.coma.self.spring.entity;
+package service.rayne.self.spring.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,11 +14,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Article {
+public class Member {
   @Id @GeneratedValue
   private Long id;
   @Column
-  private String title;
+  private String email;
   @Column
-  private String content;
+  private String password;
 }

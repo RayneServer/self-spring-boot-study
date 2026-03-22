@@ -1,4 +1,4 @@
-package dev.coma.self.spring.controller;
+package service.rayne.self.spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ public class FirstController {
 
   @GetMapping("/bye")
   public String getBye(Model model) {
-    model.addAttribute("nickname", "CoMa");
+    model.addAttribute("nickname", "Rayne");
 
     return "goodbye";
   }

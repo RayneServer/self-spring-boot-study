@@ -1,8 +1,8 @@
-package dev.coma.self.spring.controller;
+package service.rayne.self.spring.controller;
 
-import dev.coma.self.spring.dto.ArticleDto;
-import dev.coma.self.spring.entity.Article;
-import dev.coma.self.spring.repository.ArticleRepository;
+import service.rayne.self.spring.dto.ArticleDto;
+import service.rayne.self.spring.entity.Article;
+import service.rayne.self.spring.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
