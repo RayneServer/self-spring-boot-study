@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -47,6 +48,24 @@ public class MemberController {
     model.addAttribute("member", member.orElse(null));
 
     return "members/show";
+  }
+
+  @GetMapping("/members/{id}/edit")
+  public String getMembersEdit(@PathVariable Long id, Model model) {
+    Member member = memberRepository.findById(id).orElse(null);
+    model.addAttribute("member", member);
+
+    return "members/edit";
+  }
+
+  @PostMapping("/members/update")
+  public String postMembersUpdate(MemberDto dto) {
+    Member member = dto.toEntity();
+
+    Member before = memberRepository.findById(member.getId()).orElse(null);
+    if (!Objects.isNull(before)) memberRepository.save(member);
+
+    return "redirect:/members/" + member.getId();
   }
 
   @GetMapping("/members")
