@@ -5,4 +5,6 @@ values
     (3, '뇨봇', '뇨');
 
 insert into member (id, email, password)
-values (1, 'kumorin', '0000');
+values (1, 'kumorin', '0000'),
+       (2, 'Aoaoao', '1234'),
+       (3, 'Aokumo Rin', '5678');

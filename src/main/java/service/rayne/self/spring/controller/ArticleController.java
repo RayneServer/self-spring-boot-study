@@ -1,5 +1,6 @@
 package service.rayne.self.spring.controller;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.rayne.self.spring.dto.ArticleDto;
 import service.rayne.self.spring.entity.Article;
 import service.rayne.self.spring.repository.ArticleRepository;
@@ -69,6 +70,24 @@ public class ArticleController {
     if (!Objects.isNull(before)) articleRepository.save(article);
 
     return "redirect:/articles/" + article.getId();
+  }
+
+  @GetMapping("/articles/{id}/delete")
+  public String getArticlesDelete(@PathVariable Long id, RedirectAttributes reAttr) {
+    log.info("삭제 요청 받음!!!");
+
+    // 삭제 대상 가져오기
+    Article deleteTargetArticle = articleRepository.findById(id).orElse(null);
+    log.info(Objects.isNull(deleteTargetArticle) ? "대상이 없습니다." : deleteTargetArticle.toString());
+
+    // 대상 엔티티 삭제
+    if (!Objects.isNull(deleteTargetArticle)) {
+      articleRepository.delete(deleteTargetArticle);
+      reAttr.addFlashAttribute("msg", "삭제됐습니다!");
+    }
+
+    // 결과 페이지로 리다이렉트
+    return "redirect:/articles";
   }
 
   @GetMapping("/articles/{id}")

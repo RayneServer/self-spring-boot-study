@@ -1,5 +1,6 @@
 package service.rayne.self.spring.controller;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.rayne.self.spring.dto.MemberDto;
 import service.rayne.self.spring.entity.Member;
 import service.rayne.self.spring.repository.MemberRepository;
@@ -66,6 +67,17 @@ public class MemberController {
     if (!Objects.isNull(before)) memberRepository.save(member);
 
     return "redirect:/members/" + member.getId();
+  }
+
+  @GetMapping("/members/{id}/delete")
+  public String getMembersDelete(@PathVariable Long id, RedirectAttributes reAttr) {
+    Member deleteTargetMember = memberRepository.findById(id).orElse(null);
+    if (!Objects.isNull(deleteTargetMember)) {
+      memberRepository.delete(deleteTargetMember);
+      reAttr.addFlashAttribute("msg", "삭제했습니다!!");
+    }
+
+    return "redirect:/members";
   }
 
   @GetMapping("/members")
