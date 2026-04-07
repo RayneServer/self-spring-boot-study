@@ -11,11 +11,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Member {
+public class Coffee {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column
-  private String email;
+  private String name;
   @Column
-  private String password;
+  private Long price;
 }

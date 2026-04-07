@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -18,4 +20,9 @@ public class Article {
   private String title;
   @Column
   private String content;
+
+  public void patch(Article article) {
+    if (!Objects.isNull(article.title)) this.title = article.title;
+    if (!Objects.isNull(article.content)) this.content = article.content;
+  }
 }
