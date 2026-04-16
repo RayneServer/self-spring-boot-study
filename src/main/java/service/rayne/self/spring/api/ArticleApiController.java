@@ -58,4 +58,12 @@ public class ArticleApiController {
       ResponseEntity.status(HttpStatus.BAD_REQUEST).build() :
       ResponseEntity.status(HttpStatus.OK).body(deletedArticle);
   }
+
+  //Transaction Test
+  @PostMapping("/api/transaction")
+  public ResponseEntity<List<Article>> postTransaction(@RequestBody List<ArticleDto> dtos) {
+    
+
+    return null;
+  }
 }
