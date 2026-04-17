@@ -62,7 +62,7 @@ public class ArticleApiController {
   //Transaction Test
   @PostMapping("/api/transaction")
   public ResponseEntity<List<Article>> postTransaction(@RequestBody List<ArticleDto> dtos) {
-    
+    List<Article> articleList = null;
 
     return null;
   }
