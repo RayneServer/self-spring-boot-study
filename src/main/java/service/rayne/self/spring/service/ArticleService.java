@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.rayne.self.spring.dto.ArticleDto;
 import service.rayne.self.spring.entity.Article;
 import service.rayne.self.spring.repository.ArticleRepository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -65,5 +67,20 @@ public class ArticleService {
     // 3. 정상 요청 처리
     articleRepository.delete(targetArticle);
     return targetArticle;
+  }
+
+  @Transactional
+  public List<Article> insertArticleList(List<ArticleDto> dtos) {
+    // 1. DTO List를 Entity List로 변환
+    List<Article> articleList = dtos.stream().map(ArticleDto::toEntity).toList();
+
+    // 2. Entity List를 DB에 저장
+    articleRepository.saveAll(articleList);
+
+    // 3. 강제 예외 발생
+    articleRepository.findById(-1L).orElseThrow(() -> new IllegalArgumentException("결제 실패!"));
+
+    // 4. 정상 요청 처리
+    return articleList;
   }
 }

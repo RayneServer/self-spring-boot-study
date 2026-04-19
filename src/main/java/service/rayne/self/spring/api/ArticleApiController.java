@@ -62,8 +62,10 @@ public class ArticleApiController {
   //Transaction Test
   @PostMapping("/api/transaction")
   public ResponseEntity<List<Article>> postTransaction(@RequestBody List<ArticleDto> dtos) {
-    List<Article> articleList = null;
+    List<Article> articleList = articleService.insertArticleList(dtos);
 
-    return null;
+    return (Objects.isNull(articleList)) ?
+      ResponseEntity.status(HttpStatus.BAD_REQUEST).build() :
+      ResponseEntity.status(HttpStatus.OK).body(articleList);
   }
 }
