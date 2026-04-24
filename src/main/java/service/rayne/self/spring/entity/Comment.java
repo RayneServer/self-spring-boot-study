@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import service.rayne.self.spring.dto.CommentDto;
+
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -20,4 +23,11 @@ public class Comment {
   private String nickname;
   @Column
   private String body;
+
+  public static Comment toEntity(Article article, CommentDto dto) {
+    if (!Objects.isNull(dto.getId())) throw new IllegalArgumentException("댓글의 ID 값이 없어야 합니다.");
+    if (!Objects.equals(dto.getArticleId(), article.getId())) throw new IllegalArgumentException("게시글의 ID가 잘못되었습니다.");
+
+    return new Comment(null, article, dto.getNickname(), dto.getBody());
+  }
 }
