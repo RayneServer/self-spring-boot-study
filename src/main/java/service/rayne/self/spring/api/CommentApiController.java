@@ -16,7 +16,7 @@ public class CommentApiController {
 
   // 1. 댓글 조회
   @GetMapping("/api/articles/{articleId}/comments")
-  private ResponseEntity<List<CommentDto>> getComments(@PathVariable Long articleId) {
+  public ResponseEntity<List<CommentDto>> getComments(@PathVariable Long articleId) {
     // 서비스 호출
     List<CommentDto> commentDtoList = commentService.selectCommentAll(articleId);
 
@@ -26,7 +26,7 @@ public class CommentApiController {
 
   // 2. 댓글 생성
   @PostMapping("/api/articles/{articleId}/comments")
-  private ResponseEntity<CommentDto> postComments(@PathVariable Long articleId, @RequestBody CommentDto dto) {
+  public ResponseEntity<CommentDto> postComments(@PathVariable Long articleId, @RequestBody CommentDto dto) {
     // 서비스 호출
     CommentDto commentDto = commentService.insertComment(articleId, dto);
 
@@ -35,6 +35,15 @@ public class CommentApiController {
   }
 
   // 3. 댓글 수정
+  @PatchMapping("/api/comments/{id}")
+  public ResponseEntity<CommentDto> patchComments(@PathVariable Long id, @RequestBody CommentDto dto) {
+    // 서비스 호출
+    CommentDto commentDto = commentService.updateComment(id, dto);
+
+    // 결과 응답
+    return ResponseEntity.status(HttpStatus.OK).body(commentDto);
+  }
+
 
   // 4. 댓글 삭제
 }

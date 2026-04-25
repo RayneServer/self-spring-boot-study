@@ -30,4 +30,13 @@ public class Comment {
 
     return new Comment(null, article, dto.getNickname(), dto.getBody());
   }
+
+  public void patch(CommentDto dto) {
+    // 예외 처리
+    if (!Objects.equals(this.id, dto.getId())) throw new IllegalArgumentException("ID가 잘못되었습니다.");
+
+    // 객체 수정
+    if (!Objects.isNull(dto.getNickname())) this.nickname = dto.getNickname();
+    if (!Objects.isNull(dto.getBody())) this.body = dto.getBody();
+  }
 }
