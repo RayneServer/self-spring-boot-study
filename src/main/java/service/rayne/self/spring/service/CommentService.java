@@ -65,4 +65,15 @@ public class CommentService {
     // 4. DTO로 변환 후 반환
     return CommentDto.toDto(updatedComment);
   }
+
+  public CommentDto deleteComment(Long id) {
+    // 1. 댓글 조회 (+ 예외 처리)
+    Comment comment = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("대상이 없습니다."));
+
+    // 2. 댓글 삭제
+    commentRepository.delete(comment);
+
+    // 3. DTO로 변환 후 반환
+    return CommentDto.toDto(comment);
+  }
 }
