@@ -2,6 +2,7 @@ package service.rayne.self.spring.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.rayne.self.spring.dto.ArticleDto;
+import service.rayne.self.spring.dto.CommentDto;
 import service.rayne.self.spring.entity.Article;
 import service.rayne.self.spring.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import service.rayne.self.spring.service.CommentService;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +22,8 @@ import java.util.Objects;
 public class ArticleController {
   @Autowired
   private ArticleRepository articleRepository;
+  @Autowired
+  private CommentService commentService;
 
   @GetMapping("/articles/new")
   public String getArticlesNew() {
@@ -95,7 +99,10 @@ public class ArticleController {
     log.info("id = " + id);
 
     Article articleEntity = articleRepository.findById(id).orElse(null);
+    List<CommentDto> commentDtos = commentService.selectCommentAll(id);
+
     model.addAttribute("article", articleEntity);
+    model.addAttribute("commentDtos", commentDtos);
 
     return "articles/show";
   }
